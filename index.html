@@ -80,85 +80,138 @@
 
             font-size: 110%;
         }
+
+        #plain-sight {
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <h1>Michael Biberich</h1>
+<h1>Michael Biberich</h1>
+<p>
+    Software Developer<br>
+    <!--
+        Key piece #3 - You have read between the lines
+        Qe+n37hye9B9o+s7XnGbUG2Pd3XC1fuD7Z9Em+uLbpO2M33RbSbdcfWu2rAnG8ekJxvH80/i0ONkQ7S5TfV+oP3sJm3cVO8LNvbFtCcbwp5sCLvdlKGQpK3bEL1RyaQTbVcl095tiDZK0lZuylBIdi0h+a5KJp1oO2tFt2PvNkQbJWkrN2UoJLuWkHxXJZNOtKWmdHfs
+    -->
+    <small>Currently working at <a href="https://www.koerbler.com/" target="_blank" rel="noopener noreferrer">Koerbler</a></small>
+</p>
+<hr>
+<h2>References</h2>
+<p>
+    <a href="http://members.aon.at/ferienzimmer.rupp/" target="_blank" rel="noopener noreferrer">Ferienzimmer Rupp</a>
+</p>
+<hr>
+<h2>Contact</h2>
+<nav id="means-of-contact">
+    <a href="https://github.com/michaelbiberich" target="_blank" rel="noopener noreferrer" title="Find me on GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.xing.com/profile/Michael_Biberich" target="_blank" rel="noopener noreferrer" title="Find me on XING"><i class="fab fa-xing"></i></a>
+</nav>
+<div id="plain-sight" data-invisible="[[0,34],[4,12],[9,22],[3,4],[2,11],[5,19],[1,7],[7,31],[8,52],[6,8]]">
     <p>
-        Software Developer<br>
-        <small>Currently working at <a href="https://www.koerbler.com/" target="_blank" rel="noopener noreferrer">Koerbler</a></small>
+        The key to success is<br>
+        <!--
+            Key piece #2 - You've found what's hidden in plain sight
+            4+vXrfZxI3GbOyXT/gkuqnfFbd6ifdxI3OZOybS/U6XrC7d5i/ZxI3GbOyXT/i7J2c1btI8bidvcKXGbT5S4zcdqHzcSt7lT4jafKHGbj9U+/pN0706H2zlJ9552tcJt1R2T7UG11e84HW6nkup98bx7/vhzCu/Tb7i75ZTunt1tHO5umXB2T/Q7aoK7WxL3pvy/230g
+        -->
+        <img src="data:image/png;base64,">
     </p>
-    <hr>
-    <h2>References</h2>
-    <p>
-        <a href="http://members.aon.at/ferienzimmer.rupp/" target="_blank" rel="noopener noreferrer">Ferienzimmer Rupp</a>
-    </p>
-    <hr>
-    <h2>Contact</h2>
-    <nav id="means-of-contact">
-        <a href="https://github.com/michaelbiberich" target="_blank" rel="noopener noreferrer" title="Find me on GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.xing.com/profile/Michael_Biberich" target="_blank" rel="noopener noreferrer" title="Find me on XING"><i class="fab fa-xing"></i></a>
-    </nav>
-    <script>
-        const typewriter = function (element) {
-            const blink = function (node, duration, maxCycles, callback) {
-                let cycle = 0;
+</div>
+<script>
+    const typewriter = function (element) {
+        const blink = function (node, duration, maxCycles, callback) {
+            let cycle = 0;
 
-                const timer = setInterval(function( ){
-                    if (cycle >= maxCycles) {
-                        clearInterval(timer);
+            const timer = setInterval(function( ){
+                if (cycle >= maxCycles) {
+                    clearInterval(timer);
 
-                        if (typeof callback === 'function') {
-                            callback();
-                        }
-
-                        return;
+                    if (typeof callback === 'function') {
+                        callback();
                     }
 
-                    cycle ++;
+                    return;
+                }
 
-                    node.classList.contains('hidden') ?
-                        node.classList.remove('hidden') :
-                        node.classList.add('hidden');
-                }, duration);
-            };
+                cycle ++;
 
-            const type = function(node, duration, text, callback) {
-                let characters = text.split('').reverse();
+                node.classList.contains('hidden') ?
+                    node.classList.remove('hidden') :
+                    node.classList.add('hidden');
+            }, duration);
+        };
 
-                const timer = setInterval(function() {
-                    if (characters.length === 0) {
-                        clearInterval(timer);
+        const type = function(node, duration, text, callback) {
+            let characters = text.split('').reverse();
 
-                        if (typeof callback === 'function') {
-                            callback();
-                        }
+            const timer = setInterval(function() {
+                if (characters.length === 0) {
+                    clearInterval(timer);
 
-                        return;
+                    if (typeof callback === 'function') {
+                        callback();
                     }
 
-                    const character = characters.pop();
+                    return;
+                }
 
-                    node.textContent += character;
-                }, duration);
-            };
+                const character = characters.pop();
 
-            const text = element.textContent;
+                node.textContent += character;
+            }, duration);
+        };
 
-            element.textContent = '';
+        const text = element.textContent;
 
-            blink(element, 500, 5, function() {
-                type(element, 66, text, function() {
-                    blink(element, 500, 1201);
-                });
+        element.textContent = '';
+
+        blink(element, 500, 5, function() {
+            type(element, 66, text, function() {
+                blink(element, 500, 1201);
             });
-        };
+        });
+    };
 
-        window.onload = function() {
-            const title = document.querySelector('h1');
+    const achieve = function (invisible) {
+        const segments = JSON.parse(invisible);
+        const expectedLength = 10;
 
-            typewriter(title);
-        };
-    </script>
+        if ( ! (Array.isArray(segments) && segments.length === expectedLength)) {
+            console.error(
+                'Invalid argument for "invisble"; must be array of exact length ' + expectedLength
+            );
+
+            return;
+        }
+
+        const scrambledKey = 'iVBORw0KGgoAAAANSUhEUgAAAIkAAAAWCAALGPC/xhBQAARZXVmShX1wQIDpyNLJP4/HTUEAL9fAAAABGdBAAlwSFlzAAAOwQAADsEYAAAD0FAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4yMfEgaZUAAAIoSURBVGhD7ZJBiuNAEATn/5/2bC8jkwBuJFr7QA';
+        let impossible = new Array(expectedLength);
+        let offset = 0;
+
+        for (let index in segments) {
+            impossible[segments[index][0]] = scrambledKey.substr(
+                offset,
+                segments[index][1]
+            );
+
+            offset += segments[index][1];
+        }
+
+        console.log('Key piece #1 - You have seen the invisible and achieved the impossible');
+        console.log(impossible.join(''));
+    };
+
+    window.onload = function() {
+        const title = document.querySelector('h1');
+
+        typewriter(title);
+
+        console.log('Want to play a game?');
+        console.log('Visit: https://github.com/michaelbiberich/the-key-to-success');
+    };
+</script>
+
+<!-- Want to play a game? -->
+<!-- Visit: https://github.com/michaelbiberich/the-key-to-success -->
 </body>
 </html>
